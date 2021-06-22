@@ -12,13 +12,14 @@ import Search from 'Routes/Search';
 
 export default () => (
   <Router>
-    <Header>
+    <>
+      <Header />
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/tv" exact component={TV} />
         <Route path="/search" exact component={Search} />
         <Redirect from="*" to="/" />
       </Switch>
-    </Header>
+    </>
   </Router>
 );
