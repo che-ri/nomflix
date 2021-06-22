@@ -8,7 +8,7 @@ const api = axios.create({
   },
 });
 
-export const tvapi = {
+export const moviesapi = {
   //  /movie/now_playing 처럼 movie앞에 /(슬래시)를 넣으면, 절대경로가 되어서 기존 url을 덮어쓰기하게 된다.
   //  그러니 꼭!! /(슬래시)가 없는 상대경로로 설정하기!!
   nowPlaying: () => api.get('movie/now_playing'),
@@ -17,13 +17,13 @@ export const tvapi = {
   movieDetail: id =>
     api.get(`movie/${id}`, {
       params: {
-        append_to_responseZ: 'videos',
+        append_to_response: 'videos',
       },
     }),
   search: term =>
     api.get('search/movie', {
       params: {
-        quert: encodeURIComponent(term),
+        query: encodeURIComponent(term),
       },
     }),
 };

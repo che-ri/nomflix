@@ -5,6 +5,8 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
+
+//최종경로가 폴더면 폴더 안에 있는 index.js 파일에 접근한다.
 import Header from 'Components/Header';
 import Home from 'Routes/Home';
 import TV from 'Routes/TV';
