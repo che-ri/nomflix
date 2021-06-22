@@ -1,13 +1,12 @@
 import React from 'react';
-import Header from 'Components/Header';
 import Router from 'Components/Router';
+import GlobalStyles from 'Components/GlobalStyles';
 
 function App() {
   return (
     <>
-      {/* fragment */}
-      <Header />
       <Router />
+      <GlobalStyles />
     </>
   );
 }

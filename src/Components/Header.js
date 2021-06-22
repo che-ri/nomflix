@@ -1,20 +1,33 @@
 import React from 'react';
-import Router from 'Components/Router';
+import { Link } from 'react-router-dom';
+import Styled from 'styled-components';
+
+const StyledList = Styled.ul`
+  display:flex;
+  &:hover{
+    background-color:salmon;
+  }
+  
+`;
+
+const StyledLink = Styled(Link)`
+  background: pink;
+`;
 
 const Header = () => {
   return (
-    <header>
-      <ul>
+    <header className="nav">
+      <StyledList>
         <li>
-          <a href="/">Movie</a>
+          <StyledLink to="/">Movie</StyledLink>
         </li>
         <li>
-          <a href="/tv">TV</a>
+          <StyledLink to="/tv">TV</StyledLink>
         </li>
         <li>
-          <a href="/search">Search</a>
+          <StyledLink to="/search">Search</StyledLink>
         </li>
-      </ul>
+      </StyledList>
     </header>
   );
 };
