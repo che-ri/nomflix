@@ -3,21 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Section from "Components/Section";
-
-const Container = styled.div`
-    padding: 0px 20px;
-`;
-
-const Form = styled.form`
-    margin-bottom: 50px;
-    width: 100%;
-`;
-
-const Input = styled.input`
-    all: unset;
-    font-size: 28px;
-    width: 100%;
-`;
+import Error from "Components/Error";
 
 const SearchPresenter = ({
     movieResults,
@@ -42,22 +28,38 @@ const SearchPresenter = ({
             <>
                 {movieResults && movieResults.length > 0 && (
                     <Section title="Movie Results">
-                        {movieResults.map((movie) => (
+                        {movieResults.map(movie => (
                             <span key={movie.id}>{movie.title}</span>
                         ))}
                     </Section>
                 )}
                 {tvResults && tvResults.length > 0 && (
                     <Section title="TV Show Results">
-                        {tvResults.map((show) => (
+                        {tvResults.map(show => (
                             <span key={show.id}>{show.name}</span>
                         ))}
                     </Section>
                 )}
+                {error && <Error text={error} />}
             </>
         )}
     </Container>
 );
+
+const Container = styled.div`
+    padding: 0px 20px;
+`;
+
+const Form = styled.form`
+    margin-bottom: 50px;
+    width: 100%;
+`;
+
+const Input = styled.input`
+    all: unset;
+    font-size: 28px;
+    width: 100%;
+`;
 
 SearchPresenter.propTypes = {
     movieResults: PropTypes.array,

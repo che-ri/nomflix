@@ -11,7 +11,7 @@ export default class extends React.Component {
         error: null,
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = event => {
         event.preventDefault();
         const { searchTerm } = this.state;
         //만약에 검색내용이 빈 문자열이 아니라면 searchByTerm 함수 실행
@@ -20,7 +20,7 @@ export default class extends React.Component {
         }
     };
 
-    updateTerm = (event) => {
+    updateTerm = event => {
         const {
             target: { value },
             //기존 이벤트 객체 안에 target:{value} 안에 input의 value가 담겨있다.
