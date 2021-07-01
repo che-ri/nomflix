@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Loader from "Components/Loader";
 import Section from "Components/Section";
-import Error from "Components/Error";
+import Message from "Components/Message";
 
 const SearchPresenter = ({
     movieResults,
@@ -40,7 +40,13 @@ const SearchPresenter = ({
                         ))}
                     </Section>
                 )}
-                {error && <Error text={error} />}
+                {error && <Message color="#e74c3c" text={error} />}
+                {tvResults &&
+                    movieResults &&
+                    tvResults.length === 0 &&
+                    movieResults.length === 0 && (
+                        <Message text="검색결과가 없어요!" color="#95a5a6" />
+                    )}
             </>
         )}
     </Container>

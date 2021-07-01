@@ -31,7 +31,7 @@ export default class extends React.Component {
             });
         } catch {
             this.setState({
-                error: "Can't find Movies information.",
+                error: "영화정보를 불러올 수 없어요!",
             });
         } finally {
             this.setState({

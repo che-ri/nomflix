@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Error = ({ text }) => {
+const Message = ({ text, color }) => {
     return (
         <Container>
             <Text>{text}</Text>
@@ -10,8 +10,9 @@ const Error = ({ text }) => {
     );
 };
 
-Error.propTypes = {
+Message.propTypes = {
     text: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
 };
 
 const Container = styled.div`
@@ -21,8 +22,8 @@ const Container = styled.div`
 `;
 
 const Text = styled.span`
-    color: #e74c3c;
+    color: ${props => props.color};
     font-weight: 600;
 `;
 
-export default Error;
+export default Message;

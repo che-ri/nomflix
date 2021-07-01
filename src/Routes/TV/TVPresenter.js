@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Section from "Components/Section";
 import Loader from "Components/Loader";
-import Error from "Components/Error";
+import Error from "Components/Message";
 
 const Container = styled.div`
     padding: 0 20px;

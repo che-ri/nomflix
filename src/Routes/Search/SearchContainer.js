@@ -48,7 +48,7 @@ export default class extends React.Component {
                 tvResults,
             });
         } catch {
-            this.setState({ error: "Can't find results." });
+            this.setState({ error: "에러가 났어요!" });
         } finally {
             this.setState({ loading: false });
         }
