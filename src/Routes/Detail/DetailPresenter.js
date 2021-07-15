@@ -1,56 +1,91 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
+
+//컴포넌트
 import Loader from "Components/Loader";
+import Message from "Components/Message";
 
 const DetailPresenter = ({ result, error, loading }) => {
     console.log(result);
     return loading ? (
-        <Loader />
+        <>
+            <Helmet>
+                <title>Loading | Nomflix</title>
+            </Helmet>
+            <Loader />
+        </>
+    ) : error ? (
+        <Message />
     ) : (
-        <Container>
-            <Backdrop
-                bgImage={`https://image.tmdb.org/t/p/original/${result.backdrop_path}`}
-            />
-            <Content>
-                <Cover
-                    bgImage={
-                        result.poster_path
-                            ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
-                            : require("../../asset/no_poster.png").default
-                    }
+        <>
+            <Helmet>
+                <title>
+                    {result.title ? result.title : result.name} | Nomflix
+                </title>
+            </Helmet>
+            <Container>
+                <Backdrop
+                    bgImage={`https://image.tmdb.org/t/p/original/${result.backdrop_path}`}
                 />
-                <Data>
-                    <Title>{result.title ? result.title : result.name}</Title>
-                    <ItemContainer>
-                        <Item>
-                            {result.release_date
-                                ? `${result.release_date.substring(0, 4)}년`
-                                : `${result.first_air_date.substring(0, 4)}년`}
-                        </Item>
-                        <Divider>•</Divider>
-                        <Item>
-                            {result.runtime
-                                ? `${result.runtime}분`
-                                : `${result.episode_run_time}분`}
-                        </Item>
-                        <Divider>•</Divider>
-                        <Item>
-                            {result.genres &&
-                                result.genres.map((genre, idx) =>
-                                    //genres의 마지막 index만 글자뒤에 &를 붙이지 않기 위함!
-                                    idx === result.genres.length - 1
-                                        ? genre.name
-                                        : `${genre.name}/`
-                                )}
-                        </Item>
-                    </ItemContainer>
-                    <Overview>
-                        {result.overview ? result.overview : "내용이 없어요!"}
-                    </Overview>
-                </Data>
-            </Content>
-        </Container>
+                <Content>
+                    <Cover
+                        bgImage={
+                            result.poster_path
+                                ? `https://image.tmdb.org/t/p/original/${result.poster_path}`
+                                : require("../../asset/no_poster.png").default
+                        }
+                    />
+                    <Data>
+                        <Title>
+                            {result.title ? result.title : result.name}
+                        </Title>
+                        <ItemContainer>
+                            <Item>
+                                {result.release_date
+                                    ? `${result.release_date.substring(0, 4)}년`
+                                    : `${result.first_air_date.substring(
+                                          0,
+                                          4
+                                      )}년`}
+                            </Item>
+                            {result.runtime || result.episode_run_time ? (
+                                <Divider>•</Divider>
+                            ) : (
+                                ""
+                            )}
+                            <Item>
+                                {result.runtime
+                                    ? `${result.runtime}분`
+                                    : result.episode_run_time
+                                    ? `${result.episode_run_time}분`
+                                    : ""}
+                            </Item>
+                            {result.runtime || result.episode_run_time ? (
+                                <Divider>•</Divider>
+                            ) : (
+                                ""
+                            )}
+                            <Item>
+                                {result.genres &&
+                                    result.genres.map((genre, idx) =>
+                                        //genres의 마지막 index만 글자뒤에 &를 붙이지 않기 위함!
+                                        idx === result.genres.length - 1
+                                            ? genre.name
+                                            : `${genre.name}/`
+                                    )}
+                            </Item>
+                        </ItemContainer>
+                        <Overview>
+                            {result.overview
+                                ? result.overview
+                                : "내용이 없어요!"}
+                        </Overview>
+                    </Data>
+                </Content>
+            </Container>
+        </>
     );
 };
 
