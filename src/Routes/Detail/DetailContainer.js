@@ -24,7 +24,7 @@ export default class extends React.Component {
             history: { push },
         } = this.props;
         const { isMovie } = this.state;
-        const parsedId = Number(id);
+        const parsedId = parseInt(id);
         //만약 쿼리스트링이 숫자형이 아니면 home 라우터인 "/"으로 보낸다.
         if (isNaN(parsedId)) {
             return push("/");
@@ -34,7 +34,7 @@ export default class extends React.Component {
             if (isMovie) {
                 ({ data: result } = await moviesApi.movieDetail(parsedId));
             } else {
-                ({ data: result } = await tvApi.movieDetail(parsedId));
+                ({ data: result } = await tvApi.showDetail(parsedId));
             }
         } catch {
             this.setState({ error: "Can't find anything." });
@@ -44,6 +44,7 @@ export default class extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         const { result, error, loading } = this.state;
         return (
             <DetailPresenter result={result} error={error} loading={loading} />
