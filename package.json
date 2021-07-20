@@ -32,7 +32,6 @@
             "react-app/jest"
         ]
     },
-    "homepage": "https://che-ri/github.io/nomflix",
     "browserslist": {
         "production": [
             ">0.2%",
